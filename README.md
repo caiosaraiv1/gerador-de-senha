@@ -1,55 +1,92 @@
-# Gerador de Senhas Aleatórias
+# 🔐 Gerador de Senhas Seguras em C
 
-Este projeto é um gerador de senhas aleatórias escrito em C. A senha gerada inclui caracteres especiais, letras maiúsculas e minúsculas, e pode ser personalizada com o comprimento desejado pelo usuário, com a garantia de que a senha tenha pelo menos 12 caracteres para ser considerada segura.
+Um gerador de senhas aleatórias desenvolvido em C que cria senhas fortes combinando letras maiúsculas, minúsculas e caracteres especiais.
 
-## Funcionalidades
+## 🛡️ Características
 
-- Geração de senha com caracteres especiais, letras maiúsculas e minúsculas.
-- O tamanho mínimo da senha é de 12 caracteres.
-- A senha gerada é aleatória e pode ter qualquer comprimento definido pelo usuário.
+- Senha mínima de 12 caracteres
+- Combinação de três tipos de caracteres:
+  - Letras maiúsculas (A-Z)
+  - Letras minúsculas (a-z)
+  - Caracteres especiais (!@#$&*)
+- Geração aleatória usando `time.h`
+- Validação de comprimento da senha
+- Interface via linha de comando
 
-## Como Usar
+## 🔧 Pré-requisitos
 
-1. Compile o código utilizando um compilador C como o `gcc`:
-   ```bash
-   gcc -o gerador_senha main.c
-   ```
-   
-2. Execute o programa:
-   ```bash
-   ./gerador_senha
-   ```
+- Compilador C (GCC recomendado)
+- Sistema operacional compatível (Windows, Linux ou macOS)
 
-3. O programa solicitará o tamanho da senha que você deseja gerar (deve ser maior ou igual a 12). Após isso, ele gerará uma senha aleatória com o tamanho solicitado.
+## 🚀 Como Compilar e Executar
 
-## Exemplos
-
-### Entrada:
-```
-Digite o tamanho da senha: 16
+1. Clone o repositório:
+```bash
+git clone https://github.com/seu-usuario/gerador-senhas.git
+cd gerador-senhas
 ```
 
-### Saída:
+2. Compile o código:
+```bash
+gcc password_generator.c -o password_generator
 ```
-Senha gerada: aF#vTg2!rP&j9pLz
+
+3. Execute o programa:
+```bash
+./password_generator
 ```
 
-## Explicação do Código
+## 💻 Exemplo de Uso
 
-O programa gera a senha aleatoriamente utilizando três arrays pré-definidos:
-- Um array de caracteres especiais: `{'!', '@', '#', '$', '&', '*'}`.
-- Um array de letras minúsculas: `{'a', 'b', 'c', ..., 'z'}`.
-- Um array de letras maiúsculas: `{'A', 'B', 'C', ..., 'Z'}`.
+```
+Digite o tamanho da senha: 8
+Senha pequena
 
-O programa escolhe aleatoriamente entre esses arrays e seleciona um caractere de um deles até que a senha tenha o comprimento desejado. A senha gerada é então exibida para o usuário.
+Digite o tamanho da senha: 15
+Kj#nB&aLm$pX@iY
+```
 
-## Como Funciona
+## 🔍 Funções Principais
 
-1. O programa solicita o tamanho da senha ao usuário.
-2. O tamanho é validado para garantir que seja pelo menos 12.
-3. A senha é gerada escolhendo aleatoriamente um caractere de um dos arrays (caracteres especiais, letras minúsculas ou maiúsculas).
-4. A senha gerada é exibida.
+### `verify_lenght(int lenght)`
+- Verifica se o comprimento da senha é adequado (mínimo 12 caracteres)
+- Retorna `true` se o comprimento for válido
+- Retorna `false` e exibe mensagem de erro se for muito curto
 
-## Tecnologias Utilizadas
+### `create_password(char password[], int password_lenght, char special_chars[], char uppercase[], char lowercase[])`
+- Gera a senha aleatória
+- Combina caracteres dos três conjuntos disponíveis
+- Garante aleatoriedade na seleção dos caracteres
+- Adiciona terminador nulo ao final da string
 
-- Linguagem: C
+## 🎲 Conjuntos de Caracteres Utilizados
+
+### Caracteres Especiais
+```c
+{'!', '@', '#', '$', '&', '*'}
+```
+
+### Letras Maiúsculas
+```c
+{'A', 'B', 'C', ..., 'Z'}
+```
+
+### Letras Minúsculas
+```c
+{'a', 'b', 'c', ..., 'z'}
+```
+
+## ⚠️ Boas Práticas de Segurança
+
+- Use senhas geradas com pelo menos 12 caracteres
+- Evite padrões previsíveis
+- Não reutilize senhas
+- Armazene as senhas de forma segura
+- Use um gerenciador de senhas confiável
+
+## 🔄 Fluxo do Programa
+
+1. Solicita o tamanho desejado da senha
+2. Valida se o tamanho é adequado (≥ 12)
+3. Gera a senha combinando caracteres aleatórios
+4. Exibe a senha gerada
